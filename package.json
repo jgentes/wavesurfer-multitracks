@@ -1,6 +1,6 @@
 {
   "name": "wavesurfer-multitracks",
-  "version": "0.0.5.1",
+  "version": "0.0.5-fixed",
   "license": "BSD-3-Clause",
   "author": "jgentes",
   "description": "A modification to the multi-track super-plugin for wavesurfer.js that allows each track to have a different container",
