@@ -392,7 +392,9 @@ class MultiTracks extends EventEmitter<MultiTracksEvents> {
 		// Prevent click events when dragging
 		this.isDragging = true;
 		if (this.timer) clearTimeout(this.timer);
-		this.timer = setTimeout(() => (this.isDragging = false), 300);
+		this.timer = setTimeout(() => {
+			this.isDragging = false;
+		}, 300);
 	}
 
 	private onDrag(index: number, delta: number) {
@@ -453,13 +455,14 @@ class MultiTracks extends EventEmitter<MultiTracksEvents> {
 	private startSync() {
 		const onFrame = () => {
 			const syncTime = this.audios.reduce<number>((pos, audio, index) => {
+				let position = pos;
 				if (!audio.paused) {
-					pos = Math.max(
+					position = Math.max(
 						pos,
 						audio.currentTime + this.tracks[index].startPosition,
 					);
 				}
-				return pos;
+				return position;
 			}, this.currentTime);
 
 			if (syncTime > this.currentTime) {
