@@ -12,7 +12,7 @@ export default {
   },
 
   entry: {
-    multitrack: './src/multitrack.ts',
+    multitrack: './src/multitracks.ts',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],
@@ -31,7 +31,7 @@ export default {
     ],
   },
   output: {
-    library: 'Multitrack',
+    library: 'Multitracks',
     libraryTarget: 'umd',
     libraryExport: 'default',
     globalObject: 'this',

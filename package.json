@@ -1,10 +1,10 @@
 {
-  "name": "wavesurfer-multitrack",
+  "name": "wavesurfer-multitracks",
   "version": "0.0.5",
   "license": "BSD-3-Clause",
-  "author": "katspaugh",
-  "description": "Multritrack super-plugin for wavesurfer.js",
-  "homepage": "https://wavesurfer-js.org/examples#multitrack.js",
+  "author": "jgentes",
+  "description": "A modification to the multi-track super-plugin for wavesurfer.js that allows each track to have a different container",
+  "homepage": "",
   "keywords": [
     "wavesurfer",
     "multi-track"
@@ -13,21 +13,21 @@
   "files": [
     "dist"
   ],
-  "main": "dist/multitrack.js",
-  "module": "dist/multitrack.js",
-  "types": "dist/multitrack.d.ts",
-  "browser": "dist/multitrack.js",
+  "main": "dist/multitracks.js",
+  "module": "dist/multitracks.js",
+  "types": "dist/multitracks.d.ts",
+  "browser": "dist/multitracks.js",
   "exports": {
     ".": {
-      "import": "./dist/multitrack.js",
-      "require": "./dist/multitrack.min.js"
+      "import": "./dist/multitracks.js",
+      "require": "./dist/multitracks.min.js"
     }
   },
   "scripts": {
     "build": "tsc && NODE_ENV=production webpack",
     "deploy": "yarn build && yarn docs",
     "prepublishOnly": "npm run build",
-    "docs": "typedoc src/multitrack.ts --out docs",
+    "docs": "typedoc src/multitracks.ts --out docs",
     "lint": "eslint --ext .ts src --fix",
     "prettier": "prettier -w '**/*.{js,ts,css}' --ignore-path .gitignore",
     "start": "webpack serve"

@@ -1,16 +1,19 @@
-// Multitrack example
+// Multitracks example
 
-import Multitrack from '../dist/multitrack.js'
+import Multitracks from '../dist/multitracks.js'
 
-// Call Multitrack.create to initialize a multitrack mixer
-// Pass a tracks array and WaveSurfer options with a container element
-const multitrack = Multitrack.create(
+// Call Multitracks.create to initialize a multitrack mixer
+// Pass a tracks array and WaveSurfer options with a container element for each track, or a single container for all tracks
+const multitrack = Multitracks.create(
   [
     {
       id: 0,
+      hideScrollbar: true,
+      container: document.querySelector('#track0'),
     },
     {
       id: 1,
+      container: document.querySelector('#track1'),
       draggable: false,
       startPosition: 14, // start time relative to the entire multitrack
       url: '/examples/audio/librivox.mp3',
@@ -52,6 +55,8 @@ const multitrack = Multitrack.create(
     },
     {
       id: 2,
+      container: document.querySelector('#track2'),
+      hideScrollbar: true,
       draggable: true,
       startPosition: 1,
       startCue: 2.1,
@@ -67,7 +72,6 @@ const multitrack = Multitrack.create(
     },
   ],
   {
-    container: document.querySelector('#container'), // required!
     minPxPerSec: 10, // zoom level
     rightButtonDrag: true, // drag tracks with the right mouse button
     cursorWidth: 2,
@@ -85,29 +89,29 @@ const multitrack = Multitrack.create(
 )
 
 // Events
-multitrack.on('start-position-change', ({ id, startPosition }) => {
+multitracks.on('start-position-change', ({ id, startPosition }) => {
   console.log(`Track ${id} start position updated to ${startPosition}`)
 })
-multitrack.on('start-cue-change', ({ id, startCue }) => {
+multitracks.on('start-cue-change', ({ id, startCue }) => {
   console.log(`Track ${id} start cue updated to ${startCue}`)
 })
-multitrack.on('end-cue-change', ({ id, endCue }) => {
+multitracks.on('end-cue-change', ({ id, endCue }) => {
   console.log(`Track ${id} end cue updated to ${endCue}`)
 })
-multitrack.on('volume-change', ({ id, volume }) => {
+multitracks.on('volume-change', ({ id, volume }) => {
   console.log(`Track ${id} volume updated to ${volume}`)
 })
-multitrack.on('fade-in-change', ({ id, fadeInEnd }) => {
+multitracks.on('fade-in-change', ({ id, fadeInEnd }) => {
   console.log(`Track ${id} fade-in updated to ${fadeInEnd}`)
 })
-multitrack.on('fade-out-change', ({ id, fadeOutStart }) => {
+multitracks.on('fade-out-change', ({ id, fadeOutStart }) => {
   console.log(`Track ${id} fade-out updated to ${fadeOutStart}`)
 })
-multitrack.on('intro-end-change', ({ id, endTime }) => {
+multitracks.on('intro-end-change', ({ id, endTime }) => {
   console.log(`Track ${id} intro end updated to ${endTime}`)
 })
-multitrack.on('drop', ({ id }) => {
-  multitrack.addTrack({
+multitracks.on('drop', ({ id }) => {
+  multitracks.addTrack({
     id,
     url: '/examples/audio/demo.wav',
     startPosition: 0,
@@ -122,32 +126,32 @@ multitrack.on('drop', ({ id }) => {
 // Play/pause button
 const button = document.querySelector('#play')
 button.disabled = true
-multitrack.once('canplay', () => {
+multitracks.once('canplay', () => {
   button.disabled = false
   button.onclick = () => {
-    multitrack.isPlaying() ? multitrack.pause() : multitrack.play()
-    button.textContent = multitrack.isPlaying() ? 'Pause' : 'Play'
+    multitracks.isPlaying() ? multitracks.pause() : multitracks.play()
+    button.textContent = multitracks.isPlaying() ? 'Pause' : 'Play'
   }
 })
 
 // Forward/back buttons
 const forward = document.querySelector('#forward')
 forward.onclick = () => {
-  multitrack.setTime(multitrack.getCurrentTime() + 30)
+  multitracks.setTime(multitracks.getCurrentTime() + 30)
 }
 const backward = document.querySelector('#backward')
 backward.onclick = () => {
-  multitrack.setTime(multitrack.getCurrentTime() - 30)
+  multitracks.setTime(multitracks.getCurrentTime() - 30)
 }
 
 // Zoom
 const slider = document.querySelector('input[type="range"]')
 slider.oninput = () => {
-  multitrack.zoom(slider.valueAsNumber)
+  multitracks.zoom(slider.valueAsNumber)
 }
 
 // Destroy all wavesurfer instances on unmount
-// This should be called before calling initMultiTrack again to properly clean up
+// This should be called before calling initMultitracks again to properly clean up
 window.onbeforeunload = () => {
-  multitrack.destroy()
+  multitracks.destroy()
 }

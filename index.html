@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>wavesurfer.js multitrack</title>
+    <title>wavesurfer.js multitracks</title>
 
     <style>
       body {
@@ -40,14 +40,18 @@
 
   <body>
     <header>
-      <h1>wavesurfer.js multitrack</h1>
-      <a href="/docs/modules/multitrack.html">Docs</a>
+      <h1>wavesurfer.js multitracks</h1>
+      <a href="/docs/modules/multitracks.html">Docs</a>
     </header>
 
     <main>
       <label>
         Zoom: <input type="range" min="10" max="100" value="10" />
       </label>
+      
+      <div id="track0"></div>
+      <div id="track1"></div>
+      <div id="track2"></div>
 
       <div style="margin: 1em 0 2em;">
         <button id="play">Play</button>
@@ -59,7 +63,7 @@
     </main>
 
     <footer>
-      <a href="https://github.com/katspaugh/wavesurfer-multitrack">GitHub</a>
+      <a href="https://github.com/jgentes/wavesurfer-multitracks">GitHub</a>
     </footer>
 
     <script type="importmap">
