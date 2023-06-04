@@ -12,7 +12,7 @@ export default {
   },
 
   entry: {
-    multitrack: './src/multitracks.ts',
+    multitracks: './src/multitracks.ts',
   },
   resolve: {
     extensions: ['.ts', '.js', '.json'],

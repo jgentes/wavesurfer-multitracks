@@ -4,7 +4,7 @@ import Multitracks from '../dist/multitracks.js'
 
 // Call Multitracks.create to initialize a multitrack mixer
 // Pass a tracks array and WaveSurfer options with a container element for each track, or a single container for all tracks
-const multitrack = Multitracks.create(
+const multitracks = Multitracks.create(
   [
     {
       id: 0,
